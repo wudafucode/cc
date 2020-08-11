@@ -11,8 +11,11 @@ public:
 
     explicit sm_ptr(T* _pdata){
        pdata = _pdata;
-       pcount = new int(1);		
+       pcount = new int(1);
+       sp_enable_shared_from_this(this,pdata,pcount);	
     }
+    void sp_enable_shared_from_this(...){}
+    void sp_enable_shared_from_this( sm_ptr<T>* p_smptr,enable_shared_from_this<T> *pdata,int *pcount){}
     sm_ptr(const sm_ptr& _ptr){
        pdata = _ptr.pdata;
        pcount = _ptr.pcount;
@@ -62,8 +65,6 @@ T *pdata;
 int *pcount;
 
 };
-
-
 
 struct Node{
 
